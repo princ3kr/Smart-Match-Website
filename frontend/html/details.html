@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile</title>
+    
+    <!-- Import the Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/frontend/css/details.css">
+</head>
+<body>
+
+    <!-- Main wrapper for the dark theme layout -->
+    <div class="dashboard-wrapper"> 
+        <div class="details-container">
+            
+            <!-- Progress Bar -->
+            <div class="progress-indicator">
+                <!-- The new color is controlled by details.css -->
+                <div class="progress-bar" style="width: 66.6%;"></div>
+            </div>
+
+            <form id="details-form">
+                <h1>Complete Your Profile</h1>
+                <p>Just a few details to get you started on your journey.</p>
+
+                <div class="input-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" name="full-name" placeholder="e.g., John Doe" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+
+                <!-- Phone Number field is already here -->
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., (123) 456-7890" required>
+                </div>
+
+                <div class="row-group">
+                    <div class="input-group half-width">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="e.g., New York" required>
+                    </div>
+                    <div class="input-group half-width">
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="e.g., NY" required>
+                    </div>
+                </div>
+
+                <!-- The new button color is controlled by details.css -->
+                <button type="submit" class="submit-btn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/frontend/js/details.js"></script>
+</body>
+</html>

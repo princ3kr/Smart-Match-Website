@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Portal | SmartMatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-dark: #1e1e2d;
+            --card-background: #27293d;
+            --text-light: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --border-dark: #3a3f5a;
+            --primary-pink: #F72585;
+            --primary-pink-light: #FA5BA8;
+            --accent-red: #E63946;
+            --accent-red-light: #F95B6A;
+            --focus-glow: rgba(247, 37, 133, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a001f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(247, 37, 133, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(230, 57, 70, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .auth-container {
+            position: relative;
+            width: 450px;
+            max-width: 100%;
+            height: 650px;
+            background: var(--card-background);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-dark);
+        }
+
+        .forms-wrapper {
+            position: relative;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .forms-wrapper.show-login {
+            transform: translateY(0);
+        }
+
+        .forms-wrapper.show-signup {
+            transform: translateY(-650px);
+        }
+
+        .form-panel {
+            height: 650px;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .branding {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .branding .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 20px rgba(247, 37, 133, 0.6));
+        }
+
+        .branding h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .branding p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px;
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .google-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            font-size: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0 4px var(--focus-glow);
+        }
+
+        .password-group {
+            position: relative;
+        }
+
+        .password-group input {
+            padding-right: 50px;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-password-btn:hover {
+            color: var(--text-light);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(247, 37, 133, 0.3);
+            background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
+        }
+
+        .switch-text {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .switch-link {
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .switch-link:hover {
+            color: var(--primary-pink-light);
+            text-decoration: underline;
+        }
+
+        /* Tab Navigation */
+        .tab-nav {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 4px;
+            z-index: 10;
+        }
+
+        .tab-btn {
+            padding: 10px 30px;
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.3);
+        }
+
+        @media (max-width: 500px) {
+            .auth-container {
+                width: 100%;
+                height: 600px;
+            }
+
+            .form-panel {
+                height: 600px;
+                padding: 40px 30px;
+            }
+
+            .forms-wrapper.show-signup {
+                transform: translateY(-600px);
+            }
+
+            .branding h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" id="loginTab">Login</button>
+            <button class="tab-btn" id="signupTab">Sign Up</button>
+        </div>
+
+        <div class="forms-wrapper show-login" id="formsWrapper">
+            <!-- Login Panel -->
+            <div class="form-panel">
+                <div class="branding">
+                    <div class="icon">🏢</div>
+                    <h1>Welcome Back</h1>
+                    <p>Access your recruiter dashboard</p>
+                </div>
+
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="your.email@company.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <div class="password-group">
+                            <input type="password" id="login-password" placeholder="Enter your password" required>
+                            <button type="button" class="toggle-password-btn" data-target="login-password">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+
+                <div class="switch-text">
+                    Don't have an account? <span class="switch-link" id="showSignup">Sign up here</span>
+                </div>
+            </div>
+
+            <!-- Signup Panel -->
+            <div class="form-panel">
+                <div class="branding">
+                    <div class="icon">🏢</div>
+                    <h1>Join SmartMatch</h1>
+                    <p>Start hiring top talent today</p>
+                </div>
+
+                <button type="button" class="google-btn">
+                    <svg viewBox="0 0 48 48" width="20px" height="20px">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.8 2.5 30.2 0 24 0 14.62 0 6.81 5.6 2.92 13.99l7.8 6.06C12.92 13.6 18.06 9.5 24 9.5z"></path>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.42-4.55H24v8.51h12.94c-.57 2.72-2.36 4.96-4.96 6.5v5.51h7.08c4.13-3.8 6.5-9.35 6.5-16.01z"></path>
+                        <path fill="#FBBC05" d="M10.72 29.05c-.34-.99-.52-2.05-.52-3.15s.18-2.16.52-3.15l-7.8-6.06C.94 18.25 0 21.05 0 24c0 2.95.94 5.75 2.92 8.01l7.8-6.06z"></path>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.82l-7.08-5.51c-2.1 1.4-4.8 2.23-7.81 2.23-6.06 0-11.2-4.1-13.06-9.68l-7.8 6.06C6.81 42.4 14.62 48 24 48z"></path>
+                    </svg>
+                    <span>Sign Up with Google</span>
+                </button>
+
+                <div class="divider"><span>or with email</span></div>
+
+                <form id="signup-form">
+                    <div class="input-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="your.email@company.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="signup-password">Password</label>
+                        <div class="password-group">
+                            <input type="password" id="signup-password" placeholder="Create a password" required>
+                            <button type="button" class="toggle-password-btn" data-target="signup-password">
+                                <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+
+                <div class="switch-text">
+                    Already have an account? <span class="switch-link" id="showLogin">Login here</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const formsWrapper = document.getElementById('formsWrapper');
+            const loginTab = document.getElementById('loginTab');
+            const signupTab = document.getElementById('signupTab');
+            const showSignup = document.getElementById('showSignup');
+            const showLogin = document.getElementById('showLogin');
+
+            // Switch to signup
+            function switchToSignup() {
+                formsWrapper.classList.remove('show-login');
+                formsWrapper.classList.add('show-signup');
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            }
+
+            // Switch to login
+            function switchToLogin() {
+                formsWrapper.classList.remove('show-signup');
+                formsWrapper.classList.add('show-login');
+                signupTab.classList.remove('active');
+                loginTab.classList.add('active');
+            }
+
+            signupTab.addEventListener('click', switchToSignup);
+            showSignup.addEventListener('click', switchToSignup);
+            loginTab.addEventListener('click', switchToLogin);
+            showLogin.addEventListener('click', switchToLogin);
+
+            // Password toggle
+            document.querySelectorAll('.toggle-password-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetId = this.dataset.target;
+                    const input = document.getElementById(targetId);
+                    const icon = this.querySelector('.eye-icon');
+                    
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M1 1l22 22"></path>';
+                    } else {
+                        input.type = 'password';
+                        icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
+                    }
+                });
+            });
+
+            // Login form submission
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                // Get stored recruiter data
+                const storedRecruiter = localStorage.getItem('recruiterSignup');
+                
+                if (!storedRecruiter) {
+                    alert('No account found! Please sign up first.');
+                    switchToSignup();
+                    return;
+                }
+
+                const recruiterData = JSON.parse(storedRecruiter);
+
+                if (email === recruiterData.email && password === recruiterData.password) {
+                    alert('Login successful!');
+                    window.location.href = 'recruiter.html';
+                } else {
+                    alert('Incorrect email or password!');
+                }
+            });
+
+            // Signup form submission
+            document.getElementById('signup-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const email = document.getElementById('signup-email').value.trim();
+                const password = document.getElementById('signup-password').value.trim();
+
+                if (!email || !password) {
+                    alert('⚠️ Please fill in all fields.');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters long.');
+                    return;
+                }
+
+                // Save recruiter signup data
+                const recruiterData = { email, password };
+                localStorage.setItem('recruiterSignup', JSON.stringify(recruiterData));
+
+                alert('✅ Account created successfully! Continue with company details.');
+                window.location.href = 'recruiter_details.html';
+            });
+
+            // Google Sign Up
+            document.querySelector('.google-btn').addEventListener('click', function() {
+                alert('Simulating Google Sign Up...');
+                
+                const fakeGoogleAuth = {
+                    email: 'recruiter@google.com',
+                    password: 'GoogleAuth123'
+                };
+                localStorage.setItem('recruiterSignup', JSON.stringify(fakeGoogleAuth));
+                
+                window.location.href = 'recruiter_details.html';
+            });
+        });
+    </script>
+</body>
+</html>

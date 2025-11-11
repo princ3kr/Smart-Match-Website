@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Dashboard | SmartMatch</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/css/recruiter_dashboard.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">Smart<span>Match</span> Recruiter</div>
+        <div class="nav-actions">
+            <button class="create-job-btn" id="createJobBtn">+ Create New Job</button>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="dashboard-container">
+        
+        <!-- Welcome Section -->
+        <header class="dashboard-header">
+            <h1>Welcome, <span id="recruiterName">Recruiter</span>! 👋</h1>
+            <p>Manage your job postings and find the best candidates</p>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📋</div>
+                <div class="stat-info">
+                    <h3 id="totalJobs">0</h3>
+                    <p>Total Jobs</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">✅</div>
+                <div class="stat-info">
+                    <h3 id="activeJobs">0</h3>
+                    <p>Active Jobs</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <h3 id="totalMatches">0</h3>
+                    <p>Total Matches</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jobs Section -->
+        <section class="jobs-section">
+            <h2>Your Job Postings</h2>
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Jobs will be loaded here dynamically -->
+                <div class="loading">Loading jobs...</div>
+            </div>
+        </section>
+
+        <!-- Matches Modal (Hidden by default) -->
+        <div class="modal" id="matchesModal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">Top Matches</h2>
+                    <button class="close-btn" id="closeModal">×</button>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Matches will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="/frontend/js/recruiter_dashboard.js"></script>
+</body>
+</html>

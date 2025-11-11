@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top left, #1a001f, #0d0d0d);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* === Glass container === */
+.container {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 50px 40px;
+  text-align: center;
+  color: #fff;
+  width: 380px;
+  box-shadow: 0 0 40px rgba(255, 0, 150, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  animation: fadeIn 1.2s ease-out forwards;
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* === Headings === */
+h1 {
+  color: #ff3ba7;
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 15px rgba(255, 0, 150, 0.6);
+}
+
+h2 {
+  color: #fff;
+  font-size: 20px;
+  margin-bottom: 25px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* === Input fields === */
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 rgba(255, 0, 150, 0);
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.3px;
+}
+
+input:focus {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 15px rgba(255, 0, 150, 0.6);
+  transform: scale(1.02);
+}
+
+/* === Buttons === */
+button {
+  width: 100%;
+  padding: 13px;
+  margin-top: 18px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(90deg, #ff0099, #ff4dff);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 150, 0.3);
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(255, 0, 150, 0.8);
+}
+
+/* === Text links === */
+.switch {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #d9cfe9;
+}
+
+.switch span {
+  color: #ff66cc;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: 0.3s;
+}
+
+.switch span:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #ff66cc;
+}
+
+/* === Back button === */
+.back {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #bbb;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.back:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+/* === Smooth form transition === */
+.hidden {
+  display: none;
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+#loginForm,
+#signupForm {
+  transition: all 0.4s ease-in-out;
+}
+
+/* === Responsive === */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 40px 25px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+}
+
+
+

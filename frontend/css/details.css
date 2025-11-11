@@ -1,0 +1,207 @@
+/* --- Global Styles & Font Import --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    /* --- NEW: Red/Pink Color Palette --- */
+    --background-dark: #1e1e2d;
+    --card-background: #27293d;
+    --text-light: #e0e0e0;
+    --text-muted: #8a8a8a;
+    --border-dark: #3a3f5a;
+    
+    /* Vibrant Pink/Red Combo */
+    --primary-pink: #F72585; /* Hot pink */
+    --primary-pink-light: #FA5BA8;
+    --accent-red: #E63946; /* Strong red */
+    --accent-red-light: #F95B6A;
+    --focus-glow: rgba(247, 37, 133, 0.3); /* Pink glow */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Dashboard Wrapper --- */
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* --- Form Container --- */
+.details-container {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--border-dark);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Progress Bar --- */
+.progress-indicator {
+    width: 100%;
+    background-color: var(--border-dark);
+    border-radius: 4px;
+    height: 8px;
+    margin-bottom: 30px;
+}
+
+.progress-bar {
+    height: 100%;
+    /* UPDATED: Red to Pink Gradient */
+    background: linear-gradient(90deg, var(--accent-red), var(--primary-pink));
+    border-radius: 4px;
+    transition: width 0.4s ease;
+}
+
+
+/* --- Form Typography --- */
+#details-form h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#details-form p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+/* --- Form Layout & Input Groups --- */
+#details-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* UPDATED: Pink Focus Glow */
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-pink); /* Pink focus color */
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 4px var(--focus-glow);
+}
+
+.input-group input[type="date"] {
+    color: var(--text-light);
+}
+.input-group input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/* --- Row for City/State --- */
+.row-group {
+    display: flex;
+    gap: 20px;
+}
+
+.half-width {
+    flex: 1;
+}
+
+/* --- Gradient Submit Button --- */
+.submit-btn {
+    /* UPDATED: Pink to Red Gradient */
+    background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    /* UPDATED: Pink Shadow */
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    /* UPDATED: Pink Shadow */
+    box-shadow: 0 7px 20px rgba(247, 37, 133, 0.3);
+    /* UPDATED: Brighter Gradient on hover */
+    background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    .details-container {
+        padding: 30px 25px;
+    }
+    
+    .row-group {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #details-form h1 {
+        font-size: 1.75rem;
+    }
+}

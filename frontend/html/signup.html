@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create or Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-dark: #1e1e2d;
+            --card-background: #27293d;
+            --text-light: #e0e0e0;
+            --text-muted: #8a8a8a;
+            --border-dark: #3a3f5a;
+            --primary-pink: #F72585;
+            --primary-pink-light: #FA5BA8;
+            --accent-red: #E63946;
+            --accent-red-light: #F95B6A;
+            --focus-glow: rgba(247, 37, 133, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-dark);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-background);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+            position: relative;
+            overflow: hidden;
+            width: 900px;
+            max-width: 100%;
+            min-height: 550px;
+            border: 1px solid var(--border-dark);
+        }
+
+        /* Form Containers */
+        .form-container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            transition: all 0.6s ease-in-out;
+        }
+
+        .sign-in-container {
+            left: 0;
+            width: 50%;
+            z-index: 2;
+        }
+
+        .sign-up-container {
+            left: 0;
+            width: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+        }
+
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 5;
+            animation: show 0.6s;
+        }
+
+        @keyframes show {
+            0%, 49.99% { opacity: 0; z-index: 1; }
+            50%, 100% { opacity: 1; z-index: 5; }
+        }
+
+        /* Form Styles */
+        form {
+            background: var(--card-background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-light);
+            font-size: 2rem;
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+            padding: 12px 20px;
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .google-btn:hover {
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 15px 0;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .divider span {
+            padding: 0 10px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-dark);
+        }
+
+        .input-group {
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-light);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-dark);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-light);
+            background-color: rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .input-group input::placeholder {
+            color: var(--text-muted);
+            opacity: 0.7;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+            background-color: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0 4px var(--focus-glow);
+        }
+
+        .password-group {
+            position: relative;
+        }
+
+        .password-group input {
+            padding-right: 45px;
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            padding: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toggle-password-btn:hover {
+            color: var(--text-light);
+        }
+
+        .submit-btn {
+            width: 100%;
+            max-width: 320px;
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 20px rgba(247, 37, 133, 0.3);
+            background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
+        }
+
+        /* Overlay */
+        .overlay-container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.6s ease-in-out;
+            z-index: 100;
+        }
+
+        .container.right-panel-active .overlay-container {
+            transform: translateX(-100%);
+        }
+
+        .overlay {
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--accent-red) 100%);
+            color: #fff;
+            position: relative;
+            left: -100%;
+            height: 100%;
+            width: 200%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .container.right-panel-active .overlay {
+            transform: translateX(50%);
+        }
+
+        .overlay-panel {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 40px;
+            text-align: center;
+            top: 0;
+            height: 100%;
+            width: 50%;
+            transform: translateX(0);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .overlay-left {
+            transform: translateX(-20%);
+        }
+
+        .container.right-panel-active .overlay-left {
+            transform: translateX(0);
+        }
+
+        .overlay-right {
+            right: 0;
+            transform: translateX(0);
+        }
+
+        .container.right-panel-active .overlay-right {
+            transform: translateX(20%);
+        }
+
+        .overlay-panel h1 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .overlay-panel p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .ghost {
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 10px;
+            padding: 12px 45px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ghost:hover {
+            background: #fff;
+            color: var(--primary-pink);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                min-height: 600px;
+            }
+            
+            form {
+                padding: 0 30px;
+            }
+
+            .overlay-panel h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <!-- Sign Up Panel -->
+        <div class="form-container sign-up-container">
+            <form id="signup-form">
+                <h1>Create Account</h1>
+                <button type="button" class="google-btn">
+                    <svg viewBox="0 0 48 48" width="20px" height="20px">
+                        <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.8 2.5 30.2 0 24 0 14.62 0 6.81 5.6 2.92 13.99l7.8 6.06C12.92 13.6 18.06 9.5 24 9.5z"></path>
+                        <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.42-4.55H24v8.51h12.94c-.57 2.72-2.36 4.96-4.96 6.5v5.51h7.08c4.13-3.8 6.5-9.35 6.5-16.01z"></path>
+                        <path fill="#FBBC05" d="M10.72 29.05c-.34-.99-.52-2.05-.52-3.15s.18-2.16.52-3.15l-7.8-6.06C.94 18.25 0 21.05 0 24c0 2.95.94 5.75 2.92 8.01l7.8-6.06z"></path>
+                        <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.82l-7.08-5.51c-2.1 1.4-4.8 2.23-7.81 2.23-6.06 0-11.2-4.1-13.06-9.68l-7.8 6.06C6.81 42.4 14.62 48 24 48z"></path>
+                    </svg>
+                    <span>Sign Up with Google</span>
+                </button>
+                <div class="divider"><span>or use email</span></div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="e.g., john@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="password-group">
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                        <button type="button" id="toggle-password" class="toggle-password-btn">
+                            <svg id="eye-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <svg id="eye-slash-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M1 1l22 22"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+        </div>
+
+        <!-- Sign In Panel -->
+        <div class="form-container sign-in-container">
+            <form id="signin-form">
+                <h1>Sign In</h1>
+                <div class="input-group">
+                    <label for="signin-email">Email</label>
+                    <input type="email" id="signin-email" placeholder="Your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" placeholder="Your password" required>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+        </div>
+
+        <!-- Overlay -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To stay connected, please log in with your account</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Enter your personal details and start your journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Password Toggle
+            const togglePassword = document.getElementById('toggle-password');
+            const password = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            const eyeSlashIcon = document.getElementById('eye-slash-icon');
+
+            if (togglePassword) {
+                togglePassword.addEventListener('click', function() {
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    
+                    if (type === 'text') {
+                        eyeIcon.style.display = 'none';
+                        eyeSlashIcon.style.display = 'block';
+                    } else {
+                        eyeIcon.style.display = 'block';
+                        eyeSlashIcon.style.display = 'none';
+                    }
+                });
+            }
+
+            // Sign Up Logic
+            const signUpForm = document.getElementById("signup-form");
+            if (signUpForm) {
+                signUpForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
+
+                    // Validation
+                    if (!email || !password) {
+                        alert("Please enter both email and password.");
+                        return;
+                    }
+
+                    if (password.length < 6) {
+                        alert("Password must be at least 6 characters long.");
+                        return;
+                    }
+
+                    // Save to localStorage
+                    const userAuthData = {
+                        email: email,
+                        password: password
+                    };
+                    
+                    localStorage.setItem('newUserAuth', JSON.stringify(userAuthData));
+
+                    console.log("--- Initial Auth Data Saved to localStorage ---");
+                    console.log(JSON.stringify(userAuthData, null, 2));
+
+                    alert("Sign up successful! Please complete your profile.");
+                    
+                    // Redirect to details page
+                    window.location.href = "details.html";
+                });
+            }
+
+            // Google Sign Up (Simulation)
+            const googleBtn = document.querySelector(".google-btn");
+            if (googleBtn) {
+                googleBtn.addEventListener("click", function() {
+                    console.log("Google Sign Up clicked");
+                    alert("Simulating Google Sign Up...");
+                    
+                    const fakeGoogleAuth = {
+                        email: "google-user@example.com",
+                        password: "GoogleAuth123"
+                    };
+                    localStorage.setItem('newUserAuth', JSON.stringify(fakeGoogleAuth));
+                    
+                    window.location.href = "details.html";
+                });
+            }
+
+            // Sign In Logic
+            const signInForm = document.getElementById("signin-form");
+            if (signInForm) {
+                signInForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    const email = document.getElementById("signin-email").value;
+                    const password = document.getElementById("signin-password").value;
+
+                    const savedUser = JSON.parse(localStorage.getItem("newUserAuth"));
+
+                    if (!savedUser) {
+                        alert("No account found! Please sign up first.");
+                        return;
+                    }
+
+                    if (email === savedUser.email && password === savedUser.password) {
+                        alert("Login successful!");
+                        window.location.href = "dashboard.html";
+                    } else {
+                        alert("Incorrect email or password!");
+                    }
+                });
+            }
+
+            // Overlay Panel Animation
+            const signUpButton = document.getElementById('signUp');
+            const signInButton = document.getElementById('signIn');
+            const container = document.getElementById('container');
+
+            if (signUpButton && signInButton && container) {
+                signUpButton.addEventListener('click', () => container.classList.add("right-panel-active"));
+                signInButton.addEventListener('click', () => container.classList.remove("right-panel-active"));
+            }
+        });
+    </script>
+</body>
+</html>

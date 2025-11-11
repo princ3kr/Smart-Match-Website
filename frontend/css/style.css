@@ -1,0 +1,105 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f0f3f7;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  color: #333;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #2a6df4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1f4fba;
+}
+
+.hidden {
+  display: none;
+}
+
+.auth-form {
+  margin-top: 30px;
+}
+
+.auth-form input, .auth-form select {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.weights label {
+  display: block;
+  margin: 15px 0;
+}
+
+.results table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.results th, .results td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.results th {
+  background: #f4f4f4;
+}
+
+/* --- FIX overlapping form visibility --- */
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  z-index: 1;
+  opacity: 0;
+  transform: translateX(0);
+  transition: all 0.6s ease-in-out;
+}
+
+/* When user clicks “Sign Up” (right-panel-active added) */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Ensure overlay stays on top correctly */
+.overlay-container {
+  z-index: 100;
+}

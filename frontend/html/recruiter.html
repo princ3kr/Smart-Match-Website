@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- The title in the <head> can be generic -->
+    <title>Recruiter - Parameter Weighting</title>
+    
+    <!-- Import the Inter font (to match other pages) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/frontend/css/recruiter.css">
+</head>
+<body>
+
+    <div class="dashboard-wrapper"> 
+        <div class="weighting-container">
+            
+            <form id="weighting-form">
+                <header class="page-header">
+                    <!-- 
+                      UPDATE #1: 
+                      The H1 now has an ID. JS will change its text.
+                    -->
+                    <h1 id="page-title">Parameter Weighting Engine</h1>
+                    <p>Set the weights for your ideal candidate profile. The main weights must sum to 100%.</p>
+                </header>
+
+                <!-- --- 1. Main "Sum-to-100" Sliders --- -->
+                <div class="config-card main-weights">
+                    <h2>Main Weights</h2>
+                    <p class="total-weight" id="total-weight-display">Total Weight: 0%</p>
+                    
+                    <div class="slider-group">
+                        <label for="education-weight">Education: <span id="education-weight-value">0%</span></label>
+                        <input type="range" id="education-weight" class="weight-slider" min="0" max="100" value="0" step="1">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="experience-weight">Experience: <span id="experience-weight-value">0%</span></label>
+                        <input type="range" id="experience-weight" class="weight-slider" min="0" max="100" value="0" step="1">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="skills-weight">Skills & Courses: <span id="skills-weight-value">0%</span></label>
+                        <input type="range" id="skills-weight" class="weight-slider" min="0" max="100" value="0" step="1">
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="projects-weight">Projects: <span id="projects-weight-value">0%</span></label>
+                        <input type="range" id="projects-weight" class="weight-slider" min="0" max="100" value="0" step="1">
+                    </div>
+                </div>
+
+                <!-- --- 2. Threshold Configuration Section --- -->
+                <h2>Threshold Configuration</h2>
+                
+                <!-- Education Thresholds -->
+                <div class="config-card">
+                    <h3>Education Thresholds</h3>
+                    <div class="input-group">
+                        <label for="cgpa-threshold">CGPA Threshold (Min Value = 10 points)</label>
+                        <input type="number" id="cgpa-threshold" name="cgpa-threshold" placeholder="e.g., 8.0" step="0.1" min="0" max="10">
+                    </div>
+                    <div class="input-group">
+                        <label for="qualification-threshold">Highest Qualification Threshold (Min Value = 10 points)</label>
+                        <select id="qualification-threshold" name="qualification-threshold">
+                            <option value="any">Any</option>
+                            <option value="bachelors">Bachelor's (or equivalent)</option>
+                            <option value="masters">Master's</option>
+                            <option value="phd">PhD</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- 
+                  UPDATE #2:
+                  The "Job Role & Domain" card has been REMOVED.
+                  That selection now happens on domain.html.
+                -->
+
+                <!-- Experience Thresholds -->
+                <div class="config-card">
+                    <h3>Experience Thresholds</h3>
+                    <div class="row-group">
+                        <div class="input-group half-width">
+                            <label for="exp-min">Min Years (For 10 points)</label>
+                            <input type="number" id="exp-min" name="exp-min" placeholder="e.g., 3" min="0">
+                        </div>
+                        <div class="input-group half-width">
+                            <label for="exp-max">Max Years (For 10 points)</label>
+                            <input type="number" id="exp-max" name="exp-max" placeholder="e.g., 5" min="0">
+                        </div>
+                    </div>
+                    <p class="description">
+                        Candidates within the 3-5 year range get full points. Scores will be reduced for those outside this range.
+                    </p>
+                </div>
+                
+                <!-- Projects Thresholds -->
+                <div class="config-card">
+                    <h3>Project Scoring</h3>
+                    <p class="description">
+                        Project relevance will be automatically scored by our AI based on the project's description and its relation to the selected Job Domain.
+                    </p>
+                </div>
+
+                <button type="submit" class="submit-btn">Save Weighting Configuration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Use the updated recruiter.js file -->
+    <script src="/frontend/js/recruiter.js"></script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+/* --- Global Styles & Font Import (from details.css) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --background-dark: #1e1e2d;
+    --card-background: #27293d;
+    --text-light: #e0e0e0;
+    --text-muted: #8a8a8a;
+    --border-dark: #3a3f5a;
+    
+    --primary-pink: #F72585;
+    --primary-pink-light: #FA5BA8;
+    --accent-red: #E63946;
+    --accent-red-light: #F95B6A;
+    --focus-glow: rgba(247, 37, 133, 0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* --- Dashboard Wrapper (from details.css) --- */
+.dashboard-wrapper {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* --- Form Container (from details.css) --- */
+.details-container {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 480px; /* Adjusted max-width for a simple form */
+    padding: 40px;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-out;
+    border: 1px solid var(--border-dark);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Form Typography (from details.css) --- */
+#domain-form h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#domain-form p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* --- Form Layout & Input Groups (from details.css) --- */
+#domain-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+/* Re-using the select styles from param.css */
+.input-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border-dark);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e0e0e0'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 1.2em;
+}
+
+.input-group select option {
+    background-color: var(--card-background);
+    color: var(--text-light);
+}
+
+.input-group select:focus {
+    outline: none;
+    border-color: var(--primary-pink);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 4px var(--focus-glow);
+}
+
+
+/* --- Gradient Submit Button (from details.css) --- */
+.submit-btn {
+    background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(247, 37, 133, 0.3);
+    background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
+}
+
+.submit-btn:disabled {
+    background: var(--border-dark);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
