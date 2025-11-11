@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recruiter Details | SmartMatch</title>
+  <link rel="stylesheet" href="/frontend/css/recruiter_details.css" />
+</head>
+<body>
+  <div class="details-container">
+    <h1>Recruiter Information</h1>
+    <p>Please provide your company details for verification.</p>
+
+    <form id="recruiterDetailsForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your full name" required>
+
+      <label for="position">Position</label>
+      <input type="text" id="position" placeholder="Enter your position" required>
+
+      <label for="company">Company Name</label>
+      <input type="text" id="company" placeholder="Enter your company name" required>
+
+      <label for="location">Company Location</label>
+      <input type="text" id="location" placeholder="Enter company location" required>
+
+      <label for="udyam">UDYAM Verification</label>
+      <input type="file" id="udyam" accept=".pdf,.jpg,.jpeg,.png" required>
+
+      <button type="submit" class="next-btn">Next →</button>
+    </form>
+  </div>
+
+  <script src="/frontend/js/recruiter_details.js"></script>
+</body>
+</html>

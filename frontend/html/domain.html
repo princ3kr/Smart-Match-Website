@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Job Role</title>
+    
+    <!-- Import the Inter font (to match other pages) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Use the new domain.css file -->
+    <link rel="stylesheet" href="/frontend/css/domain.css">
+</head>
+<body>
+
+    <div class="dashboard-wrapper"> 
+        <div class="details-container">
+            
+            <form id="domain-form">
+                <h1>Select Job Role</h1>
+                <p>First, select the domain and the specific role you are hiring for.</p>
+
+                <!-- Step 1: Select Domain -->
+                <div class="input-group">
+                    <label for="job-domain">Job Domain</label>
+                    <select id="job-domain" name="job-domain" required>
+                        <option value="" disabled selected>Select a domain...</option>
+                        <option value="cse-it">CSE / IT</option>
+                        <option value="ece">ECE</option>
+                        <option value="eee">EEE</option>
+                        <option value="mechanical">Mechanical</option>
+                        <option value="mba">MBA</option>
+                        <option value="ca">CA</option>
+                    </select>
+                </div>
+
+                <!-- Step 2: Select Job Post (Initially hidden) -->
+                <div class="input-group" id="job-post-group" style="display: none;">
+                    <label for="job-post">Job Post</label>
+                    <select id="job-post" name="job-post" required>
+                        <!-- JavaScript will populate this list -->
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submit-btn" disabled>Set Weightages</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/frontend/js/domain.js"></script>
+</body>
+</html>

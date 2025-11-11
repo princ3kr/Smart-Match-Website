@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Dashboard | SmartMatch</title>
+  <link rel="stylesheet" href="/frontend/css/employee_dashboard.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="logo">Talent<span>Match</span></div>
+
+    <!-- Menu Icon -->
+    <div class="menu-icon" id="menu-icon">☰</div>
+
+    <!-- Dropdown Menu -->
+    <div class="dropdown-menu" id="dropdown-menu">
+      <a href="#">🏠 Home</a>
+      <a href="#">💼 Explore Jobs</a>
+      <a href="#">👤 View Profile</a>
+      <a href="#">📜 Applications</a>
+      <a href="#">🚪 Logout</a>
+    </div>
+  </nav>
+
+  <!-- ===== DASHBOARD HEADER ===== -->
+  <section class="dashboard-header">
+    <div class="welcome-card">
+      <div class="user-icon">👤</div>
+      <div class="user-info">
+        <h2>Welcome back, <span id="empName">sss</span>!</h2>
+        <p id="empEmail">admin@gmail.com</p>
+      </div>
+      <div class="stats">
+        <div class="stat-card">
+          <p>Applications</p>
+          <h3>12</h3>
+        </div>
+        <div class="stat-card">
+          <p>Profile Views</p>
+          <h3>48</h3>
+        </div>
+        <div class="stat-card">
+          <p>Interviews</p>
+          <h3>3</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOBS SECTION ===== -->
+  <section class="jobs-section">
+    <h2>Explore Jobs</h2>
+    <div class="job-grid" id="jobGrid">
+      <!-- Jobs will be dynamically loaded here -->
+    </div>
+  </section>
+
+  <script src="/frontend/js/employee_dashboard.js"></script>
+</body>
+</html>
