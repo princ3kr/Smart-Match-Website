@@ -38,13 +38,13 @@ body {
     padding: 20px;
 }
 
-/* --- Form Container (from details.css) --- */
+/* --- Form Container --- */
 .details-container {
     background-color: var(--card-background);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 480px; /* Adjusted max-width for a simple form */
+    max-width: 480px;
     padding: 40px;
     overflow: hidden;
     animation: fadeIn 0.5s ease-out;
@@ -56,7 +56,7 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Form Typography (from details.css) --- */
+/* --- Form Typography --- */
 #domain-form h1 {
     font-size: 2.25rem;
     font-weight: 700;
@@ -72,7 +72,7 @@ body {
     text-align: center;
 }
 
-/* --- Form Layout & Input Groups (from details.css) --- */
+/* --- Form Layout & Input Groups --- */
 #domain-form {
     display: flex;
     flex-direction: column;
@@ -92,7 +92,6 @@ body {
     color: var(--text-light);
 }
 
-/* Re-using the select styles from param.css */
 .input-group select {
     width: 100%;
     padding: 14px 16px;
@@ -123,7 +122,7 @@ body {
 }
 
 
-/* --- Gradient Submit Button (from details.css) --- */
+/* --- Gradient Submit Button--- */
 .submit-btn {
     background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
     color: #fff;
