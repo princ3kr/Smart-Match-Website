@@ -1,8 +1,6 @@
-/* --- Global Styles & Font Import (from param.css) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    /* --- Red/Pink Color Palette --- */
     --background-dark: #1e1e2d;
     --card-background: #27293d;
     --card-background-darker: #222436;
@@ -25,12 +23,11 @@ body {
     color: var(--text-light);
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Align to top */
+    align-items: flex-start;
     min-height: 100vh;
     padding: 40px 20px;
 }
 
-/* --- Base Layout Wrappers (from param.css) --- */
 .dashboard-wrapper {
     width: 100%;
     max-width: 1000px;
@@ -39,9 +36,8 @@ body {
     padding: 20px;
 }
 
-/* Renamed for clarity */
 .weighting-container {
-    background-color: transparent; /* Container is just for layout */
+    background-color: transparent;
     width: 100%;
     max-width: 800px; 
     animation: fadeIn 0.5s ease-out;
@@ -52,7 +48,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Page Header --- */
 .page-header {
     margin-bottom: 30px;
     padding-bottom: 20px;
@@ -73,14 +68,12 @@ body {
     text-align: left;
 }
 
-/* --- Form --- */
 #weighting-form {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Space between cards */
+    gap: 25px;
 }
 
-/* --- Base Input/Select Styles (from param.css) --- */
 .input-group {
     display: flex;
     flex-direction: column;
@@ -144,7 +137,6 @@ body {
     margin-top: 5px;
 }
 
-/* --- Configuration Card --- */
 .config-card {
     background-color: var(--card-background);
     border-radius: 16px;
@@ -172,13 +164,12 @@ body {
     margin-bottom: -5px;
 }
 
-/* --- Main "Sum-to-100" Sliders --- */
 .main-weights .total-weight {
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-light);
     text-align: right;
-    margin-top: -50px; /* Position it next to the title */
+    margin-top: -50px;
     margin-bottom: 10px;
 }
 
@@ -200,7 +191,6 @@ body {
     float: right;
 }
 
-/* Custom Slider Styles */
 input[type="range"].weight-slider {
     -webkit-appearance: none;
     appearance: none;
@@ -212,7 +202,6 @@ input[type="range"].weight-slider {
     outline: none;
 }
 
-/* Slider Thumb (Chrome/Safari) */
 input[type="range"].weight-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -228,7 +217,6 @@ input[type="range"].weight-slider:hover::-webkit-slider-thumb {
     background: var(--primary-pink-light);
 }
 
-/* Slider Thumb (Firefox) */
 input[type="range"].weight-slider::-moz-range-thumb {
     width: 22px;
     height: 22px;
@@ -243,8 +231,6 @@ input[type="range"].weight-slider:hover::-moz-range-thumb {
     background: var(--primary-pink-light);
 }
 
-
-/* --- Submit Button (from param.css) --- */
 .submit-btn {
     background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
     color: #fff;
@@ -265,7 +251,6 @@ input[type="range"].weight-slider:hover::-moz-range-thumb {
     background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
 }
 
-/* --- Responsive Design --- */
 @media (max-width: 768px) {
     .page-header h1 {
         font-size: 2rem;
