@@ -2,19 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    /* --- NEW: Red/Pink Color Palette --- */
     --background-dark: #1e1e2d;
     --card-background: #27293d;
     --text-light: #e0e0e0;
     --text-muted: #8a8a8a;
     --border-dark: #3a3f5a;
     
-    /* Vibrant Pink/Red Combo */
-    --primary-pink: #F72585; /* Hot pink */
+    --primary-pink: #F72585; 
     --primary-pink-light: #FA5BA8;
-    --accent-red: #E63946; /* Strong red */
+    --accent-red: #E63946;
     --accent-red-light: #F95B6A;
-    --focus-glow: rgba(247, 37, 133, 0.3); /* Pink glow */
+    --focus-glow: rgba(247, 37, 133, 0.3);
 }
 
 * {
@@ -73,7 +71,6 @@ body {
 
 .progress-bar {
     height: 100%;
-    /* UPDATED: Red to Pink Gradient */
     background: linear-gradient(90deg, var(--accent-red), var(--primary-pink));
     border-radius: 4px;
     transition: width 0.4s ease;
@@ -133,10 +130,9 @@ body {
     opacity: 0.7;
 }
 
-/* UPDATED: Pink Focus Glow */
 .input-group input:focus {
     outline: none;
-    border-color: var(--primary-pink); /* Pink focus color */
+    border-color: var(--primary-pink);
     background-color: rgba(0, 0, 0, 0.3);
     box-shadow: 0 0 0 4px var(--focus-glow);
 }
@@ -162,7 +158,6 @@ body {
 
 /* --- Gradient Submit Button --- */
 .submit-btn {
-    /* UPDATED: Pink to Red Gradient */
     background: linear-gradient(90deg, var(--primary-pink), var(--accent-red));
     color: #fff;
     border: none;
@@ -173,15 +168,12 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 15px;
-    /* UPDATED: Pink Shadow */
     box-shadow: 0 4px 15px rgba(247, 37, 133, 0.2);
 }
 
 .submit-btn:hover {
     transform: translateY(-3px);
-    /* UPDATED: Pink Shadow */
     box-shadow: 0 7px 20px rgba(247, 37, 133, 0.3);
-    /* UPDATED: Brighter Gradient on hover */
     background: linear-gradient(90deg, var(--primary-pink-light), var(--accent-red-light));
 }
 
