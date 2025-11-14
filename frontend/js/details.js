@@ -68,13 +68,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const result = await response.json();
 
             if (response.ok) {
-                // SUCCESS! User created in database
                 console.log(`✅ User created successfully with ID: ${result.userId}`);
                 
-                // Save userId for next step
                 localStorage.setItem('currentUserId', result.userId);
                 
-                // Clear temporary auth data
                 localStorage.removeItem('newUserAuth');
 
                 console.log("--- User session created. Redirecting to profile page ---");
