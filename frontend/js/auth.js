@@ -1,5 +1,3 @@
-// ========== AUTH.JS ==========
-
 // Show Login Form
 document.getElementById("loginBtn").addEventListener("click", () => {
   document.getElementById("mainButtons").classList.add("hidden");
@@ -32,7 +30,7 @@ document.getElementById("browseBtn").addEventListener("click", () => {
   alert("Browsing limited demo mode...");
 });
 
-// ========== Signup Logic ==========
+
 document.getElementById("signupSubmit").addEventListener("click", () => {
   const username = document.getElementById("signupUsername").value.trim();
   const password = document.getElementById("signupPassword").value.trim();
@@ -60,7 +58,7 @@ document.getElementById("signupSubmit").addEventListener("click", () => {
   localStorage.setItem("users", JSON.stringify(users));
 
   alert("✅ Signup successful! You can now login.");
-  goBack(); // return to main buttons
+  goBack();
 });
 
 // ========== Login Logic ==========
