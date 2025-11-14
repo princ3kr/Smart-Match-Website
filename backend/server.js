@@ -18,8 +18,8 @@ app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 const dbConfig = {
     host: 'localhost',
     user: 'root',
-    password: 'pk142145',
-    database: 'user_profiles',
+    password: 'your_password',
+    database: 'your_db',
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0
