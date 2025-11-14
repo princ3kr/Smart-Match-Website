@@ -158,7 +158,7 @@ Create `.env` file in backend directory:
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_password
-DB_NAME=user_profiles
+DB_NAME=your_db
 PORT=3000
 ```
 
@@ -350,9 +350,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👥 Team
 
-**Developer**: [Your Name](https://linkedin.com/in/yourprofile)
+**Developer**: [Prince Kumar](www.linkedin.com/in/prince-kumar-364252332)
 
-**Hackathon**: SynHack 2024  
+**Hackathon**: SynHack 2025
 **Problem Statement By**: Red String
 
 ---
@@ -362,16 +362,14 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Red String** for the innovative problem statement
 - **SynHack** organizers for the opportunity
 - **MySQL** documentation for schema design insights
-- Coffee ☕ for keeping us awake during the 24-hour sprint
-
 ---
 
 ## 📧 Contact
 
 For questions or feedback, reach out:
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-- Project Link: [https://github.com/yourusername/smartmatch](https://github.com/yourusername/smartmatch)
+- LinkedIn: [Your LinkedIn](www.linkedin.com/in/prince-kumar-364252332)
+- Email: pk307339@gmail.com
+- Project Link: [https://github.com/yourusername/smartmatch](https://github.com/princ3kr/Smart-Match-Website)
 
 ---
 
