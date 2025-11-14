@@ -1,9 +1,3 @@
-/*
-===================================================================
-=== UPDATED SERVER.JS WITH RECRUITER MATCHING SYSTEM ===
-===================================================================
-*/
-
 import express from 'express';
 import cors from 'cors';
 import mysql from 'mysql2/promise';
@@ -43,10 +37,7 @@ pool.getConnection()
         console.error('❌ Database connection failed:', err.message);
     });
 
-// =============================================
 // HTML ROUTES
-// =============================================
-
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/html/home.html'));
 });
@@ -87,10 +78,7 @@ app.get('/recruiter_dashboard.html', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/html/recruiter_dashboard.html'));
 });
 
-// =============================================
 // EMPLOYEE REGISTRATION & AUTHENTICATION
-// =============================================
-
 app.post('/api/register/user', async (req, res) => {
     console.log('\n📝 Received request at /api/register/user');
     
@@ -324,10 +312,7 @@ app.get('/api/user/profile/:userId', async (req, res) => {
     }
 });
 
-// =============================================
 // RECRUITER REGISTRATION & AUTHENTICATION
-// =============================================
-
 app.post('/api/register/recruiter', async (req, res) => {
     console.log('\n📝 Received request at /api/register/recruiter');
     
@@ -417,10 +402,7 @@ app.post('/api/login/recruiter', async (req, res) => {
     }
 });
 
-// =============================================
 // JOB POSTING APIs
-// =============================================
-
 // Create Job Posting with Weights
 app.post('/api/recruiter/job-posting', async (req, res) => {
     console.log('\n📝 Creating new job posting with weights');
@@ -547,10 +529,7 @@ app.get('/api/job-posting/:jobId', async (req, res) => {
     }
 });
 
-// =============================================
 // MATCHING ALGORITHM
-// =============================================
-
 app.post('/api/job-posting/:jobId/find-matches', async (req, res) => {
     const { jobId } = req.params;
     console.log(`\n🔍 Finding matches for job ID: ${jobId}`);
@@ -673,8 +652,6 @@ async function calculateCandidateScore(connection, candidate, job) {
     let skillsScore = 0;
     let projectsScore = 0;
 
-    // ===== 1. EDUCATION SCORE (0-10) =====
-    
     // CGPA Score
     if (job.cgpa_threshold && candidate.cgpa) {
         if (candidate.cgpa >= job.cgpa_threshold) {
@@ -709,7 +686,7 @@ async function calculateCandidateScore(connection, candidate, job) {
     // Cap at 10
     educationScore = Math.min(educationScore, 10);
 
-    // ===== 2. EXPERIENCE SCORE (0-10) =====
+    // 2. EXPERIENCE SCORE (0-10)
     
     // Get candidate's experience in relevant roles
     const [skills] = await connection.execute(
@@ -769,7 +746,7 @@ async function calculateCandidateScore(connection, candidate, job) {
 
     experienceScore = Math.min(maxExpScore, 10);
 
-    // ===== 3. SKILLS SCORE (0-10) =====
+    // 3. SKILLS SCORE (0-10)
     
     // Check skill hierarchy match
     const [hierarchySkills] = await connection.execute(
@@ -810,7 +787,7 @@ async function calculateCandidateScore(connection, candidate, job) {
 
     skillsScore = skillCount > 0 ? Math.min((skillMatchScore / skillCount) * 5, 10) : 0;
 
-    // ===== 4. PROJECTS SCORE (0-10) =====
+    // 4. PROJECTS SCORE (0-10)
     
     const [projects] = await connection.execute(
         'SELECT project_name, description FROM projects WHERE profile_id = ?',
@@ -847,7 +824,7 @@ async function calculateCandidateScore(connection, candidate, job) {
         projectsScore = Math.min(projectScore, 10);
     }
 
-    // ===== 5. CALCULATE WEIGHTED SCORES =====
+    // 5. CALCULATE WEIGHTED SCORES
     
     const educationWeighted = (educationScore * job.weight_education) / 10;
     const experienceWeighted = (experienceScore * job.weight_experience) / 10;
@@ -908,9 +885,7 @@ app.get('/api/job-posting/:jobId/matches', async (req, res) => {
     }
 });
 
-// =============================================
 // UTILITY ENDPOINTS
-// =============================================
 
 // Get all available domains and posts
 app.get('/api/domains-posts', async (req, res) => {
