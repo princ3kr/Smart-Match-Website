@@ -344,7 +344,7 @@ This was a hackathon project, but contributions are welcome!
 
 ## 📝 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source.
 
 ---
 
@@ -367,7 +367,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 📧 Contact
 
 For questions or feedback, reach out:
-- LinkedIn: [Your LinkedIn](www.linkedin.com/in/prince-kumar-364252332)
+- LinkedIn: [Prince Kumar](www.linkedin.com/in/prince-kumar-364252332)
 - Email: pk307339@gmail.com
 - Project Link: [https://github.com/yourusername/smartmatch](https://github.com/princ3kr/Smart-Match-Website)
 
